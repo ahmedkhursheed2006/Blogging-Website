@@ -15,10 +15,18 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    
     try {
-      const url = isActive ? "http://localhost:5000/auth/signup" : "http://localhost:5000/auth/login"; // Adjust API endpoint
-      const { data } = await axios.post(url, form);
+      const url = isActive ? "http://localhost:5000/auth/signup" : "http://localhost:5000/auth/login";
+  
+      // Send only required fields for login or signup
+      const payload = isActive
+        ? form  // Send all fields for signup
+        : { email: form.email, password: form.password };  // Send only email & password for login
+  
+      const { data } = await axios.post(url, payload, {
+        headers: { "Content-Type": "application/json" }
+      });
   
       if (data.token) {
         localStorage.setItem("token", data.token);
@@ -27,9 +35,10 @@ function Login() {
         console.error("Login failed:", data.error);
       }
     } catch (error) {
-      console.error("Error logging in:", error);
+      console.error("Error logging in:", error.response?.data || error.message);
     }
   };
+  
   
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -130,7 +139,7 @@ function Login() {
               <h1 className='w-full text-[36px] font-bold my-[-10px] mx-0 text-center '>Hello, Welcome!</h1>
               <p className='text-[14.5px] my-[15px] mx-0 mb-[20px]'>Don't have an account?</p>
               <button className='bg-green-600 w-[160px] h-[46px] rounded-[8px] cursor-pointer text-[16px] text-white font-[600]'
-                onClick={() => setIsActive(true)}>Register</button>
+                onClick={() => setIsActive(true)}><Link to={`/signup`}>Register</Link></button>
             </div>
 
 
@@ -138,7 +147,7 @@ function Login() {
               <h1 className='w-full text-[36px] font-bold my-[-10px] mx-0 text-center'>Welcome Back!</h1>
               <p className='text-[14.5px] my-[15px] mx-0 mb-[20px]'>Already have an account?</p>
               <button className='bg-green-600 w-[160px] h-[46px] rounded-[8px] cursor-pointer text-[16px] text-white font-[600]'
-                onClick={() => setIsActive(false)}>Login</button>
+                onClick={() => setIsActive(false)}><Link to={`/login`}>Login</Link></button>
             </div>
           </div>
 

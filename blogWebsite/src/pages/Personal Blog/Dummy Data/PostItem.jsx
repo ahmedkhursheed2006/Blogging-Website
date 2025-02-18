@@ -8,7 +8,7 @@ function PostItem({postsID, category, title, description, authorID, thumbnail}) 
     return (
         <article className='rounded-2xl flex gap-3'>
             <div>
-                <img className='rounded-2xl aspect-video w-[31rem]' src={thumbnail} alt={title} />
+                <img className='rounded-2xl aspect-video w-[10rem]' src={thumbnail} alt={title} />
             </div>
             <div className='flex flex-col justify-center'>
                 <Link to={`/PersonalPage/posts/${postsID}`}>

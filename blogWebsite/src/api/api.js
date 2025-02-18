@@ -1,6 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
-
 // Signup
 export const signup = async (userData) => {
   const res = await fetch(`${API_URL}/auth/signup`, {
@@ -13,6 +12,7 @@ export const signup = async (userData) => {
 
 // Login using email and password
 export const login = async (userData) => {
+  
   const res = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -28,7 +28,7 @@ export const googleLogin = async () => {
 
 
 // Creating posts
-export const createPost = async (postData) => {
+export const createPost = async (postData) => {  
   const res = await fetch(`${API_URL}/posts`, { 
     method: "POST",
     headers: { "Content-Type": "application/json" },

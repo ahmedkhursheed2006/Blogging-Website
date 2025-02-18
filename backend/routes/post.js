@@ -6,6 +6,7 @@ const router = express.Router();
 // **Create a New Post**
 router.post("/", async (req, res) => {
   try {
+    console.log("Request body received:", req.body);
     const { title, category, description, thumbnail } = req.body;
 
     const newPost = new Post({
@@ -18,6 +19,8 @@ router.post("/", async (req, res) => {
     await newPost.save();
     res.status(201).json(newPost);
   } catch (error) {
+    
+    console.error("Error creating post:", error); 
     res.status(500).json({ error: error.message });
   }
 });

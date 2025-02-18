@@ -33,6 +33,10 @@ function App() {
               path="/login"
               element={<Login/>}
             />
+            <Route
+              path="/signup"
+              element={<Login/>}
+            />
             
             <Route
               path="/PersonalPage/posts/:id"

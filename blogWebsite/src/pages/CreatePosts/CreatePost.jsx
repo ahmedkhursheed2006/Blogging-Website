@@ -42,7 +42,7 @@ function CreatePost() {
         title,
         category,
         description,
-        thumbnail, // This should be handled properly for file uploads
+        thumbnail,
       };
   
       const response = await createPost(postData);
@@ -81,7 +81,7 @@ function CreatePost() {
             value={description}
             onChange={setDescription}
           />
-          <input className='bg-white rounded-lg p-2 mt-10 cursor-pointer  ' type="file" onChange={e => setThumbnail(e.target.files[0])} accept='png, jpg, jpeg , webp'  />
+          <input className='bg-white rounded-lg p-2 mt-10 cursor-pointer  ' type="file" onChange={e => setThumbnail(e.target.files[0])} accept='.png, .jpg, .jpeg , .webp'  />
           <button className="border-2 border-red-600 bg-red-600 text-white rounded-2xl cursor-pointer" type="submit">
             Create
           </button>

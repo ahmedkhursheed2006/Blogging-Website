@@ -1,10 +1,10 @@
 import React, { useState , useEffect } from 'react'
-
+import { getPosts } from '../../../api/api';
 import PostItem from './PostItem'
-import { DUMMY_DATA } from './data'
-function Data() {
-    // const [posts, setPosts] = useState([]);
 
+function Data() {
+    
+  const [posts, setPosts] = useState([]); 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -17,7 +17,7 @@ function Data() {
     fetchPosts();
   }, []);
 
-    const [posts, setPosts] = useState(DUMMY_DATA)
+    
     return (
         <section className='flex flex-col gap-3'>
            { posts.length > 0?

@@ -1,15 +1,1 @@
 @import "tailwindcss";
-.custom-scrollbar::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome, Safari */
-  }
-  .custom-scrollbar {
-    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
-    scrollbar-width: none;  /* Hide scrollbar for Firefox */
-  }
-  .ql-container {
-    background: white !important;
-  }
-  
-  .ql-editor {
-    background: white !important;
-  }
