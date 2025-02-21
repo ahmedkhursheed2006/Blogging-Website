@@ -3,12 +3,14 @@ import Food from '../Sub Personal Pages/Food'
 import Lifestyle from '../Sub Personal Pages/Lifestyle'
 import Fitness from '../Sub Personal Pages/Fitness'
 import DIY from '../Sub Personal Pages/DIY'
-
+import { useMediaQuery } from 'react-responsive'
 import { useLocation } from 'react-router'
 import { useEffect } from 'react'
 export default function Personal() {
     const location = useLocation();
-
+    const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
+    const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });
+    const isSmall = useMediaQuery({ query: "(max-width: 480px)" });
   useEffect(() => {
     if (location.hash) {
       const sectionId = location.hash.substring(1); // Remove #
@@ -21,11 +23,11 @@ export default function Personal() {
     }
   }, [location]);
     return (
-        <div className='w-full h-full'>
-            <section className='relative flex justify-center items-center w-full h-[600px] text-white z-2 bg-[url("https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=")] bg-bottom bg-cover'>
+        <div className=' w-full h-full'>
+            <section className={`h-[600px] relative flex justify-center items-center w-full text-white z-2 bg-[url("https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=")] bg-bottom bg-cover`}>
                 <div className='absolute w-full h-full bg-black opacity-40'></div>
                 <div className='z-10 text-center w-full'>
-                    <h2 className='text-[5em] font-[800] uppercase'>Personal Blogs</h2>
+                    <h2 className={`${isLarge?"text-[5rem]":isMedium?"text-[4rem]":isSmall?"text-[3rem]":""} font-[800] uppercase`} > Personal Blogs</h2>
                     <p className='text-[1.1em] my-[20px] font-[700] max-w-[700px] m-auto'>
                         Personal blogs are a powerful way to share your thoughts, experiences, and passions with the world.
                         They offer a space for self-expression, creativity, and personal growth.

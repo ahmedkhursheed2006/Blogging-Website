@@ -8,7 +8,7 @@ function CreatePost() {
   const [category, setCategory] = useState("Uncategorized");
   const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
-  const Post_Categories = ["Personal", "Business", "Education", "Company", "Uncategorized"];
+  const Post_Categories = ["Food,Personal", "DIY,Personal", "Lifestyle,Personal", "Fitness,Personal", "Business", "Education", "Company", "Uncategorized"];
 
   const modules = {
     toolbar: [
