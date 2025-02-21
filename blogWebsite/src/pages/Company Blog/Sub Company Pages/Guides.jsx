@@ -1,6 +1,8 @@
 import React from 'react'
 import { useMediaQuery } from 'react-responsive';
-function DIY() {
+import Posts from '/src/pages/Personal Blog/Dummy Data/data.jsx'
+function Guides
+() {
     const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
     const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });
     const isSmall = useMediaQuery({ query: "(max-width: 480px)" });
@@ -24,4 +26,5 @@ function DIY() {
     )
 }
 
-export default DIY
+export default Guides
+

@@ -4,30 +4,32 @@ import { IoMdMail } from "react-icons/io";
 import { Link } from 'react-router';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from "axios";
-
+import { useMediaQuery } from "react-responsive";
 function Login() {
   const [isActive, setIsActive] = useState(false)
   const [form, setForm] = useState({ name: "", email: "", password: "" });
-
+  const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
+  const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });
+  const isSmall = useMediaQuery({ query: "(max-width: 480px)" });
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const url = isActive ? "http://localhost:5000/auth/signup" : "http://localhost:5000/auth/login";
-  
+
       // Send only required fields for login or signup
       const payload = isActive
         ? form  // Send all fields for signup
         : { email: form.email, password: form.password };  // Send only email & password for login
-  
+
       const { data } = await axios.post(url, payload, {
         headers: { "Content-Type": "application/json" }
       });
-  
+
       if (data.token) {
         localStorage.setItem("token", data.token);
         console.log("Auth successful!");
@@ -38,19 +40,19 @@ function Login() {
       console.error("Error logging in:", error.response?.data || error.message);
     }
   };
-  
-  
+
+
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
         const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         });
-  
-        
+
+
         // Send user data to backend for authentication
         const backendResponse = await axios.post("http://localhost:5000/auth/google", userInfo.data);
-        
+
         if (backendResponse.data.token) {
           localStorage.setItem("token", backendResponse.data.token);
           console.log("Google Auth successful!");
@@ -61,12 +63,12 @@ function Login() {
     },
     onError: (error) => console.log("Google Login Failed:", error),
   });
-  
+
 
 
 
   return (
-    <div className=' min-h-[100vh] bg-linear-to-r from-[#e2e2e2] to-[#c9d6ff]'>
+    <div className=' min-h-[100vh] bg-linear-to-r from-[#e2e2e2] to-[#c9d6ff] '>
       <div className='flex justify-center items-center'>
         <div className={`container relative w-[850px] h-[550px] bg-white rounded-[30px] shadow-[0_0_30px_rgba(0_0_0_0.2)] overflow-hidden
         
@@ -93,9 +95,6 @@ function Login() {
                 <Link
                   onClick={() => googleLogin()}
                   className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 '><FaGoogle /></Link>
-                <Link className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 '><FaFacebook /></Link>
-                <Link className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 '><FaGithub /></Link>
-                <Link className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 '><FaLinkedin /></Link>
               </div>
             </form>
           </div>
@@ -112,7 +111,7 @@ function Login() {
               <div className='relative my-[30px] mx-0 flex justify-center'>
                 <input name="email" onChange={handleChange} className='w-full py-[13px] pr-[50px] pl-[20px] bg-[#eee] rounded-[8px] border-none outline-none text-[16px] text-[#333]' type="email" placeholder='email' required />
                 <IoMdMail className='absolute right-[20px] top-1/2 transform translate-y-[-50%] text-[#888] font-[20px] ' />
-              </div>  
+              </div>
               <div className='relative my-[30px] mx-0 flex justify-center'>
                 <input name="password" onChange={handleChange} className='w-full py-[13px] pr-[50px] pl-[20px] bg-[#eee] rounded-[8px] border-none outline-none text-[16px] text-[#333]' type="password" placeholder='password' required />
                 <FaLock className='absolute right-[20px] top-1/2 transform translate-y-[-50%] text-[#888] font-[20px] ' />
@@ -121,9 +120,6 @@ function Login() {
               <p className='text-[14.5px] my-[15px] mx-0'>or Login with social platforms</p>
               <div className='flex justify-center'>
                 <Link className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 ' onClick={() => googleLogin()}><FaGoogle /></Link>
-                <Link className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 '><FaFacebook /></Link>
-                <Link className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 '><FaGithub /></Link>
-                <Link className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 '><FaLinkedin /></Link>
               </div>
             </form>
           </div>

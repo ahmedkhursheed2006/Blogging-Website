@@ -6,7 +6,7 @@ import Technology from '/src/pages/Business Blog/Sub Business Pages/Technology.j
 import { useMediaQuery } from 'react-responsive'
 import { useLocation } from 'react-router'
 import { useEffect } from 'react'
-export default function Personal() {
+export default function Business() {
     const location = useLocation();
     const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
     const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });

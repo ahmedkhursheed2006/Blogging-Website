@@ -16,7 +16,7 @@ function EducationBlog() {
                         <div className={`rounded-bl-xl h-full bg-[#ffe4dc] flex flex-col `}>
                             <div className='m-1'>
                                 <h3 className={`${isLarge ? "text-4xl" : isMedium ? "text-2xl" : isSmall ? "text-xs" : ""} font-bold`}>Learning Platforms</h3>
-                                <p className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.4rem]" : ""} overflow-y-scroll`}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, autem perspiciatis! A perferendis at inventore mollitia consectetur voluptas eius veritatis!</p>
+                                <p className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.4rem]" : ""} overflow-y-scroll no-scrollbar`}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, autem perspiciatis! A perferendis at inventore mollitia consectetur voluptas eius veritatis!</p>
                                 <button className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.5rem]" : ""} rounded-[4px] bg-black text-white p-1`}>Read More</button>
                             </div>
                         </div>
@@ -26,7 +26,7 @@ function EducationBlog() {
                         <div className={` h-full bg-[#ffe4dc] flex flex-col `}>
                             <div className='m-1'>
                                 <h3 className={`${isLarge ? "text-4xl" : isMedium ? "text-2xl" : isSmall ? "text-xs" : ""} font-bold`}>Learning Platforms</h3>
-                                <p className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.4rem]" : ""} overflow-y-scroll`}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, autem perspiciatis! A perferendis at inventore mollitia consectetur voluptas eius veritatis!</p>
+                                <p className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.4rem]" : ""} overflow-y-scroll no-scrollbar`}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, autem perspiciatis! A perferendis at inventore mollitia consectetur voluptas eius veritatis!</p>
                                 <button className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.5rem]" : ""} rounded-[4px] bg-black text-white p-1`}>Read More</button>
                             </div>
                         </div>
@@ -36,7 +36,7 @@ function EducationBlog() {
                         <div className={`rounded-br-xl h-full bg-[#ffe4dc] flex flex-col `}>
                             <div className='m-1'>
                                 <h3 className={`${isLarge ? "text-4xl" : isMedium ? "text-2xl" : isSmall ? "text-xs" : ""} font-bold`}>Learning Platforms</h3>
-                                <p className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.4rem]" : ""} overflow-y-scroll`}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, autem perspiciatis! A perferendis at inventore mollitia consectetur voluptas eius veritatis!</p>
+                                <p className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.4rem]" : ""} overflow-y-scroll no-scrollbar`}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, autem perspiciatis! A perferendis at inventore mollitia consectetur voluptas eius veritatis!</p>
                                 <button className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.5rem]" : ""} rounded-[4px] bg-black text-white p-1`}>Read More</button>
                             </div>
                         </div>

@@ -45,7 +45,7 @@ function CompanyBlog() {
                             </div>
                             <div className='w-1/5 h-full'>
                                 <div className='aspect-square h-1/2 bg-[url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSET8xFx61S3P1HC_lLZBYeTjDyN89qAojO9w&s")] bg-cover bg-center border-solid border-[#1c1711] border-2 rounded-t-lg'></div>
-                                <div className='aspect-square h-full bg-[#008ecc] text-[#1C2833] text-center font-bold flex justify-center align-middle border-solid border-[#1c1711] border-2 rounded-b-lg'><Link to='/CompanyPage#leadership' className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.5rem]" : ""} `}>Leaders Thoughts</Link></div>
+                                <div className='aspect-square h-full bg-[#008ecc] text-[#1C2833] text-center font-bold flex justify-center items-center border-solid border-[#1c1711] border-2 rounded-b-lg'><Link to='/CompanyPage#leadership' className={`${isLarge ? "text-sm" : isMedium ? "text-xs" : isSmall ? "text-[.5rem]" : ""} `}>Leaders Thoughts</Link></div>
                             </div>
                         </div>
                     </div>

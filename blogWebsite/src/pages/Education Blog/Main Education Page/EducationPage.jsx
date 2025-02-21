@@ -6,7 +6,7 @@ import Tools from '/src/pages/Education Blog/Sub Education Pages/Tools.jsx'
 import { useMediaQuery } from 'react-responsive'
 import { useLocation } from 'react-router'
 import { useEffect } from 'react'
-export default function Personal() {
+export default function Educational() {
     const location = useLocation();
     const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
     const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });
