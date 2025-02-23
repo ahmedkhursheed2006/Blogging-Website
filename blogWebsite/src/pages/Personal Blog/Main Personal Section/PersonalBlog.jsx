@@ -34,7 +34,7 @@ function PersonalBlog() {
                     </div>
                     <div className={`border-solid border-[#1c1711] w-full ${isLarge ? "border-2" : isMedium ? "border-[1px]" : isSmall ? "border-[1px]" : ""}`}></div>
                     <div><h4 className={`text-[#38473d] text-center underline my-2 ${isLarge? "":isMedium? "text-[1rem]": isSmall? "text-[.3rem]":""}`}><Link to='/PersonalPage' target='_blank'>More Blogs Here</Link></h4></div>
-                <div className={`flex justify-between px-2 w-full ${isLarge?"":""}`}>
+                <div className={`flex justify-around  px-2 w-full ${isLarge?"":""}`}>
                     <div>
                         <div className={`relative ${isLarge? "size-30": isMedium?"size-20":isSmall?"size-10":""} aspect-square bg-[url("https://www.blogsavvypanda.com/wp-content/uploads/2021/02/lifestyle-blog-post-ideas-for-lifestyle-blogger.jpg")] bg-cover bg-center border-solid border-[#1c1711] border-2 rounded-lg`}>
                             <div className="absolute bg-black opacity-40 inset-0"></div>

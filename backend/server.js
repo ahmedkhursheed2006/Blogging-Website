@@ -9,9 +9,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/auth", authRoutes);
 app.use("/posts", postRoutes);
+app.use("/uploads", express.static("uploads"));
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)

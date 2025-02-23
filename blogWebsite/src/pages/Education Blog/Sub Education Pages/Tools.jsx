@@ -9,21 +9,21 @@ function Tools() {
     const isSmall = useMediaQuery({ query: "(max-width: 480px)" });
     return (
         <section className='mt-20 flex flex-col items-center '>
-                            <div className={`${isSmall ? "flex-col" : ""} w-[80%] rounded-4xl flex aspect-video gap-7 justify-center`}>
+            <div className={`${isSmall ? "flex-col" : ""} w-[80%] rounded-4xl flex aspect-video gap-7 justify-center`}>
                 <div className={`${isSmall ? "aspect-square h-[18rem]" : "aspect-video h-[23.125rem]"} relative bg-[url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjyhk_iLbgXT9QE6S12R_XF1J9SErIWemZg&s")] bg-center bg-cover rounded-3xl`}>
-                        <div className='absolute bg-black w-full h-full opacity-35 rounded-3xl'></div>
-                        <div className='relative w-full h-full flex flex-col justify-end p-5 text-white'>
+                    <div className='absolute bg-black w-full h-full opacity-35 rounded-3xl'></div>
+                    <div className='relative w-full h-full flex flex-col justify-end p-5 text-white'>
                         <h1 className={`${isSmall ? "text-[1.8rem]" : "text-[3rem]"} font-[800] uppercase`}>Tools & Apps Blogs:</h1>
-                            <h2 className={`${isSmall ? "text-[1.3rem]" : "text-[2rem]"} font-[700] uppercase`}> Your Guide to Productivity, Innovation, and Efficiency</h2>
-                            <p className={`${isSmall ? "text-[.8rem]" : ""}`}>From project management apps and AI-powered assistants to design software, automation tools, and must-have business applications, tools and apps blogs help you navigate the vast world of digital solutions. Learn about hidden features, productivity hacks, and industry trends to maximize efficiency and stay ahead in a tech-driven world.</p>
-                        </div>
+                        <h2 className={`${isSmall ? "text-[1.3rem]" : "text-[2rem]"} font-[700] uppercase`}> Your Guide to Productivity, Innovation, and Efficiency</h2>
+                        <p className={`${isSmall ? "text-[.8rem]" : ""}`}>From project management apps and AI-powered assistants to design software, automation tools, and must-have business applications, tools and apps blogs help you navigate the vast world of digital solutions. Learn about hidden features, productivity hacks, and industry trends to maximize efficiency and stay ahead in a tech-driven world.</p>
                     </div>
-                    <div className={`${isSmall ? "overflow-x-scroll h-[10rem]" : "flex-col overflow-x-visible overflow-y-scroll h-[23rem]"}flex  gap-5 items-center w-full  no-scrollbar`}>
-                    
-                                        <Posts />
-                                    </div>
                 </div>
-            </section>
+                <div className={`${isSmall ? "overflow-x-scroll h-[10rem]" : "flex-col overflow-x-visible overflow-y-scroll h-[23rem]"}flex  gap-5 items-center w-full  no-scrollbar`}>
+
+                    <Posts category="Skill" />
+                </div>
+            </div>
+        </section>
     )
 }
 

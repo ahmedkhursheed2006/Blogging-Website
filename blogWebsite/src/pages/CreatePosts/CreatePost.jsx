@@ -3,12 +3,36 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { createPost } from "/src/api/api.js";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router";
 function CreatePost() {
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("Uncategorized");
+  const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [thumbnail, setThumbnail] = useState(null);
-  const Post_Categories = ["Food,Personal", "DIY,Personal", "Lifestyle,Personal", "Fitness,Personal", "Business", "Education", "Company", "Uncategorized"];
+  const [thumbnail, setThumbnail] = useState();
+  const Post_Categories = [
+    // Uncategorized
+     "Uncategorized",
+    // Personal Categories
+    "Food",
+    "DIY",
+    "Lifestyle",
+    "Fitness",
+    // Business Categories
+    "Marketing",
+    "Management",
+    "Finance",
+    "Technology",
+    // Education Categories
+     "Learning",
+     "Platforms",
+     "Skill",
+     "Tools",
+    // Company Categories
+    "Guides",
+    "Insights",
+    "Leadership",
+    "News",
+    "Reviews",];
 
   const modules = {
     toolbar: [
@@ -33,24 +57,32 @@ function CreatePost() {
     "link",
     "image",
   ];
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const postData = {
-        title,
-        category,
-        description,
-        thumbnail,
-      };
-
-      const response = await createPost(postData);
-      console.log("Post Created:", response);
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("category", category);
+      formData.append("description", description);
+      formData.append("thumbnail", thumbnail);
+  
+      const response = await fetch("http://localhost:5000/posts/create", {
+        method: "POST",
+        body: formData, // ✅ Send everything in one request
+      });
+  
+      const data = await response.json();
+      console.log("✅ Post Created:", data);
+  
+      navigate("/PersonalPage");
     } catch (error) {
-      console.error("Error creating post:", error.message);
+      console.log("❌ Error creating post:", error.message);
     }
   };
+  
+
 
   const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
   const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });
@@ -58,8 +90,8 @@ function CreatePost() {
 
   return (
     <section className="w-full h-screen flex justify-center bg-[#ffecd1]">
-      <div className={`${isSmall?"w-9/10":"w-1/2"} h-full`}>
-        <form className="w-full h-full flex flex-col gap-3" onSubmit={handleSubmit}>
+      <div className={`${isSmall ? "w-9/10" : "w-1/2"} h-full`}>
+        <form className="w-full h-full flex flex-col gap-3 py-5" onSubmit={handleSubmit}>
           <input
             className="bg-white p-2 rounded-lg capitalize outline-0"
             type="text"
@@ -79,15 +111,16 @@ function CreatePost() {
             ))}
           </select>
           <ReactQuill
-            className="h-80 rounded-lg ql-container"
+            className="h-70 rounded-lg ql-container overflow-y-scroll no-scrollbar"
             modules={modules}
             formats={formats}
             value={description}
             onChange={setDescription}
           />
-          <input className='bg-white rounded-lg p-2 mt-10 cursor-pointer  ' type="file" onChange={e => setThumbnail(e.target.files[0])} accept='.png, .jpg, .jpeg , .webp' />
+          <input className='bg-white rounded-lg p-2 cursor-pointer ' type="file" onChange={e => setThumbnail(e.target.files[0])} accept='.png, .jpg, .jpeg , .webp' />
           <button className="border-2 border-red-600 bg-red-600 text-white rounded-2xl cursor-pointer" type="submit">
-            Create
+            Create {console.log("Thumbnail received in request:", thumbnail)
+            }
           </button>
         </form>
       </div>

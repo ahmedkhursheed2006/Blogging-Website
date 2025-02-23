@@ -1,18 +1,29 @@
 import React, { useState } from 'react'
 import { FaUser, FaLock, FaGoogle, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from "axios";
 import { useMediaQuery } from "react-responsive";
+import {useAuth} from "./AuthContext";
 function Login() {
+  const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false)
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
   const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });
   const isSmall = useMediaQuery({ query: "(max-width: 480px)" });
+  
+  const {setUser} = useAuth();
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleLogin = async () => {
+    const result = await loginUser(form); 
+    if (result) {
+        setIsAuthenticated(true); 
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -21,10 +32,10 @@ function Login() {
     try {
       const url = isActive ? "http://localhost:5000/auth/signup" : "http://localhost:5000/auth/login";
 
-      // Send only required fields for login or signup
+      
       const payload = isActive
-        ? form  // Send all fields for signup
-        : { email: form.email, password: form.password };  // Send only email & password for login
+        ? form  
+        : { email: form.email, password: form.password }; 
 
       const { data } = await axios.post(url, payload, {
         headers: { "Content-Type": "application/json" }
@@ -32,6 +43,8 @@ function Login() {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
+        setUser(data.user);
+        navigate("/")
         console.log("Auth successful!");
       } else {
         console.error("Login failed:", data.error);
@@ -55,6 +68,8 @@ function Login() {
 
         if (backendResponse.data.token) {
           localStorage.setItem("token", backendResponse.data.token);
+          setUser(userInfo.data);
+          navigate("/")
           console.log("Google Auth successful!");
         }
       } catch (error) {
@@ -89,7 +104,9 @@ function Login() {
               <div className='mx-0 mt-[-15px] mb-[15px] '>
                 <Link className='text-[14.5px] text-[#333] decoration-0 hover:underline '>Forgot Password</Link>
               </div>
-              <button className='w-full h-12 bg-[#7493ec] rounded-[8px] shadow-[0_0_10px_rgba(0_0_0_0.1)] border-none cursor-pointer text-[16px] text-white font-[600]  '>Login</button>
+              <button
+              onClick={handleLogin}
+               className='w-full h-12 bg-[#7493ec] rounded-[8px] shadow-[0_0_10px_rgba(0_0_0_0.1)] border-none cursor-pointer text-[16px] text-white font-[600]  '>Login</button>
               <p className='text-[14.5px] my-[15px] mx-0'>or Login with social platforms</p>
               <div className='flex justify-center'>
                 <Link
@@ -116,7 +133,7 @@ function Login() {
                 <input name="password" onChange={handleChange} className='w-full py-[13px] pr-[50px] pl-[20px] bg-[#eee] rounded-[8px] border-none outline-none text-[16px] text-[#333]' type="password" placeholder='password' required />
                 <FaLock className='absolute right-[20px] top-1/2 transform translate-y-[-50%] text-[#888] font-[20px] ' />
               </div>
-              <button className='w-full h-12 bg-[#7493ec] rounded-[8px] shadow-[0_0_10px_rgba(0_0_0_0.1)] border-none cursor-pointer text-[16px] text-white font-[600]'>Register</button>
+              <button  className='w-full h-12 bg-[#7493ec] rounded-[8px] shadow-[0_0_10px_rgba(0_0_0_0.1)] border-none cursor-pointer text-[16px] text-white font-[600]'>Register</button>
               <p className='text-[14.5px] my-[15px] mx-0'>or Login with social platforms</p>
               <div className='flex justify-center'>
                 <Link className='inline-flex p-[10px] border-solid border-[#ccc] border-[2px] rounded-[8px] text-[#333] decoration-0 my-0 mx-[8px] hover:scale-125 ' onClick={() => googleLogin()}><FaGoogle /></Link>

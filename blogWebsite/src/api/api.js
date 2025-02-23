@@ -10,6 +10,10 @@ export const signup = async (userData) => {
   return res.json();
 };
 
+
+
+
+
 // Login using email and password
 export const login = async (userData) => {
   
@@ -26,10 +30,15 @@ export const googleLogin = async () => {
   window.location.href = `${API_URL}/auth/google`;
 };
 
+// User Logout
+export const logout = async () => {
+  const res = await fetch(`${API_URL}/auth/logout`);
+  return res.json();
+};
 
 // Creating posts
 export const createPost = async (postData) => {  
-  const res = await fetch(`${API_URL}/posts`, { 
+  const res = await fetch(`${API_URL}/posts/create`, { 
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(postData),
@@ -41,6 +50,17 @@ export const createPost = async (postData) => {
 
   return res.json();
 };
+
+// Edit Posts
+export const editPost = async (id, formData) => {
+  const response = await fetch(`${API_URL}/posts/edit/${id}`, {
+    method: "PUT",
+    body: formData, // ✅ Use FormData for file upload
+  });
+
+  return response.json();
+};
+
 
 // Getting Posts
 export const getPosts = async () => {

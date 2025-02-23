@@ -10,17 +10,17 @@ function CompanyBlog() {
             <div className={`flex float-right w-[70%] ${isLarge ? "h-[37.5rem]" : isMedium ? "h-[25rem]" : isSmall ? "h-[14rem]" : ""} m-8 bg-[#A1BFC7] rounded-[10px]`}>
                 <div className='h-full w-[30%]'>
                     <div className='h-3/10 w-full rounded-tl-[10px] bg-[#F4A261]'>
-                    <Link to="/CompanyPage" className='hover:underline'>
-                        <h1 className={`font-bold ${isLarge ? "text-[3.1rem] py-4" : isMedium ? "text-[2.1rem] py-2" : isSmall ? "text-[.9rem] py-2" : ""} px-1`}>COMPANY</h1>
-                        <h2 className={`font-bold ${isLarge ? "text-[2.8rem]" : isMedium ? "text-[1.8rem]" : isSmall ? "text-[.8rem]" : ""} px-1`}>Blogs</h2>
-                    </Link>
+                        <Link to="/CompanyPage" className='hover:underline'>
+                            <h1 className={`font-bold ${isLarge ? "text-[3.1rem] py-4" : isMedium ? "text-[2.1rem] py-2" : isSmall ? "text-[.9rem] py-2" : ""} px-1`}>COMPANY</h1>
+                            <h2 className={`font-bold ${isLarge ? "text-[2.8rem]" : isMedium ? "text-[1.8rem]" : isSmall ? "text-[.8rem]" : ""} px-1`}>Blogs</h2>
+                        </Link>
                     </div>
-                    <div className={`${isLarge ? "text-[.9rem]" : isMedium ? "text-[.8rem]" : isSmall ? "text-[.4rem]" : ""} h-7/10 w-full rounded-bl-[10px] bg-[#1C2833] text-[#F8F9FA] text-left`}>
-                        <p className='px-2'>Discover the latest trends, insights, and expert advice tailored just for you.
-                            <div className={`relative left-[15%] ${isLarge ? "h-[12.5rem] w-[11.25rem]" : isMedium ? "h-[10rem] w-[9rem]" : isSmall ? "hidden" : ""} rounded-[10px] bg-[url("https://assets.entrepreneur.com/content/3x2/2000/20190402203550-GettyImages-694983385.jpeg")] bg-center bg-cover`}></div>
-                            Whether you're looking for inspiration, practical tips, or in-depth knowledge, our carefully curated blogs cover everything from lifestyle and fitness to home decor and beyond.
-                        </p>    
-                    </div>
+
+                    <p className={`${isLarge ? "text-[.9rem]" : isMedium ? "text-[.8rem]" : isSmall ? "text-[.4rem]" : ""} h-7/10 w-full rounded-bl-[10px] bg-[#1C2833] text-[#F8F9FA] text-left px-2`}>Discover the latest trends, insights, and expert advice tailored just for you.
+                        <div className={`relative left-[15%] ${isLarge ? "h-[12.5rem] w-[11.25rem]" : isMedium ? "h-[10rem] w-[9rem]" : isSmall ? "hidden" : ""} rounded-[10px] bg-[url("https://assets.entrepreneur.com/content/3x2/2000/20190402203550-GettyImages-694983385.jpeg")] bg-center bg-cover`}></div>
+                        Whether you're looking for inspiration, practical tips, or in-depth knowledge, our carefully curated blogs cover everything from lifestyle and fitness to home decor and beyond.
+                    </p>
+
                 </div>
                 <div className='h-full w-3/4'>
                     <div className='w-full h-1/2 rounded-tr-[10px] bg-[url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0g0UPeJQssG00CWMIMKlSm1LVEalPqsUxNnkWv-zEZFhnBpByHbU9qNSGXqydeQLnqV0&usqp=CAU")] bg-right bg-cover '></div>

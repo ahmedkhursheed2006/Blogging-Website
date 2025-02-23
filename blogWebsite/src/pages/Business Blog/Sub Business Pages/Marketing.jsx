@@ -20,7 +20,7 @@ function Management() {
                 </div>
                 <div className={`${isSmall ? "overflow-x-scroll h-[10rem]" : "flex-col overflow-x-visible overflow-y-scroll h-[23rem]"}flex  gap-5 items-center w-full  no-scrollbar`}>
 
-                    <Posts />
+                    <Posts category = "Marketing" />
                 </div>
             </div>
         </section>

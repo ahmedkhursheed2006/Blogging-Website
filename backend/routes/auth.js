@@ -103,7 +103,7 @@ router.post("/google", async (req, res) => {
 
     if (!user) {
       // If user does not exist, create a new one (without password)
-      user = new User({ name, email, password: " ", authType: "google" , });
+      user = new User({ name, email, password: " ", authType: "google", });
       await user.save();
     }
 
@@ -120,6 +120,11 @@ router.post("/google", async (req, res) => {
     console.error("Google Auth Error:", err);
     res.status(500).json({ error: "Server error", details: err.message });
   }
+});
+// Logout route
+router.post("/logout", (req, res) => {
+  res.clearCookie("session_token"); // Remove session cookie if using cookies
+  res.json({ message: "Logged out successfully" });
 });
 
 
