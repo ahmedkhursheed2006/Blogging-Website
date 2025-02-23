@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive';
 import Posts from '/src/pages/Personal Blog/Dummy Data/data.jsx'
-import PostItem from '../Dummy Data/PostItem';
+
 function DIY() {
     const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
     const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });
@@ -19,7 +19,7 @@ function DIY() {
                     </div>
                 </div>
                 <div className={`${isSmall ? "overflow-x-scroll h-[10rem]" : "flex-col overflow-x-visible overflow-y-scroll h-[23rem]"}flex  gap-5 items-center w-full  no-scrollbar`}>
-                    <Posts category ="DIY"/>
+                    <Posts category="DIY"/>
                 </div>
             </div>
         </section>

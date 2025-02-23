@@ -58,6 +58,7 @@ function CreatePost() {
     "image",
   ];
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -67,18 +68,19 @@ function CreatePost() {
       formData.append("category", category);
       formData.append("description", description);
       formData.append("thumbnail", thumbnail);
-  
+      formData.append("authorID", user.id)
+      formData.append("authorName", user.name)
       const response = await fetch("http://localhost:5000/posts/create", {
         method: "POST",
-        body: formData, // ✅ Send everything in one request
+        body: formData,
       });
   
       const data = await response.json();
-      console.log("✅ Post Created:", data);
+      console.log("Post Created:", data);
   
       navigate("/PersonalPage");
     } catch (error) {
-      console.log("❌ Error creating post:", error.message);
+      console.log("Error creating post:", error.message);
     }
   };
   

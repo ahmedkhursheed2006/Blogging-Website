@@ -1,5 +1,5 @@
 import React , {useState} from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import PersonalPage from '/src/pages/Personal Blog/Main Personal Page/PersonalPage.jsx'
 import Layout from '../pages/Layout'
 import { useMediaQuery } from 'react-responsive'
@@ -8,6 +8,7 @@ import { RxAvatar } from "react-icons/rx";
 import { logout } from '../api/api'
 
 function NavBar() {
+    const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false)
 
     const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
@@ -136,7 +137,7 @@ function NavBar() {
                         <div className={`${isActive? "":"hidden"} absolute w-full text-center bg-blue-600 text-white right-[0px]`}>
                             <Link to={`/posts/user/${user?.id}`} className='block p-2 hover:bg-white hover:text-blue-600 hover:underline'>
                             My Posts</Link>
-                            <Link className='block p-2 hover:underline hover:bg-white hover:text-blue-600' onClick={logout}>Logout</Link>
+                            <Link to={`/`} className='block p-2 hover:underline hover:bg-white hover:text-blue-600' onClick={logout}>Logout</Link>
                         </div>
                     </div>
                     </div>

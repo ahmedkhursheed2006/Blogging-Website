@@ -53,7 +53,7 @@ function App() {
                 element={<PersonalPage />}
               />
               <Route
-                path="/posts/user/:username"
+                path="/posts/user/:id"
                 element={<AuthorPosts />}
               />
               <Route

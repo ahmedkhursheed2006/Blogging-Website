@@ -29,13 +29,15 @@ router.post("/create", upload.single("thumbnail"), async (req, res) => {
   try {
     console.log("📥 Request Body:", req.body);
     console.log("📁 Uploaded File:", req.file);
-    const { title, category, description } = req.body;
+    const { title, category, description, authorID, authorName } = req.body;
     const thumbnailPath = req.file ? `/uploads/${req.file.filename}` : null;
     const newPost = new Post({
       title,
       category,
       description,
       thumbnail: thumbnailPath,
+      authorID,
+      authorName
     });
 
     await newPost.save();
@@ -50,8 +52,8 @@ router.post("/create", upload.single("thumbnail"), async (req, res) => {
 // Edit post
 router.put("/edit/:id", upload.single("thumbnail"), async (req, res) => {
   try {
-    console.log("📥 Edit Request Body:", req.body);
-    console.log("📁 Uploaded File:", req.file);
+    console.log("Edit Request Body:", req.body);
+    console.log("Uploaded File:", req.file);
 
     const { title, category, description } = req.body;
     let updatedData = { title, category, description };
@@ -70,7 +72,7 @@ router.put("/edit/:id", upload.single("thumbnail"), async (req, res) => {
 
     res.json(updatedPost);
   } catch (error) {
-    console.error("❌ Error updating post:", error);
+    console.error("Error updating post:", error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -80,7 +82,7 @@ router.put("/edit/:id", upload.single("thumbnail"), async (req, res) => {
 // **Get All Posts**
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().populate("authorID", "name");
 
     res.json(posts);
   } catch (error) {
@@ -91,7 +93,7 @@ router.get("/", async (req, res) => {
 // **Get a Single Post by ID**
 router.get("/:id", async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate('authorID', 'name');
     if (!post) return res.status(404).json({ error: "Post not found" });
 
     res.json(post);

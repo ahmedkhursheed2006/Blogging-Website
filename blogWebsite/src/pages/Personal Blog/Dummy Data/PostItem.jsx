@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import PostAuthor from './PostAuthor'
 import { useMediaQuery } from 'react-responsive'
 import DOMPurify from 'dompurify'
-function PostItem({ postsID, title, description, thumbnail }) {
+function PostItem({ postsID, title, description, thumbnail, authorID , authorName }) {
     const shortDescription = description.length > 150 ? description.substr(0, 50) + '...' : description
     const shortTitle = title.length > 30 ? title.substr(0, 5) + '...' : title
     const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
@@ -24,7 +24,7 @@ function PostItem({ postsID, title, description, thumbnail }) {
                     </Link>
                     <p dangerouslySetInnerHTML={{__html:safeHTML}} ></p>
                     <div className='flex gap-2'>
-                        <PostAuthor />
+                        <PostAuthor authorID={authorID} authorName={authorName} />
 
                     </div>
                 </div>}

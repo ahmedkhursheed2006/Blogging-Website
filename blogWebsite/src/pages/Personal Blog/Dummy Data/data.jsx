@@ -3,7 +3,7 @@ import { getPosts } from "../../../api/api";
 import PostItem from "./PostItem";
 import { useMediaQuery } from "react-responsive";
 
-function Data({ category }) {  
+function Posts({ category} ) {  
   const isLarge = useMediaQuery({ query: "(min-width: 786px)" });
   const isMedium = useMediaQuery({ query: "(min-width: 480px) and (max-width: 785px)" });
   const isSmall = useMediaQuery({ query: "(max-width: 480px)" });
@@ -14,6 +14,7 @@ function Data({ category }) {
     const fetchPosts = async () => {
       try {
         const data = await getPosts();
+        console.log(data)
         setPosts(data);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -24,11 +25,12 @@ function Data({ category }) {
 
   
   const filteredPosts = posts.filter((post) => post.category === category);
+  
 
   return (
     <section className={`${isSmall ? "" : "flex-col"} flex gap-3`}>
       {filteredPosts.length > 0 ? (  
-        filteredPosts.map(({ _id, thumbnail, category, title, description, authorID }) => (
+        filteredPosts.map(({ _id, thumbnail, category, title, description, authorID, authorName }) => (
           <PostItem
             key={_id}
             postsID={_id}
@@ -37,6 +39,7 @@ function Data({ category }) {
             title={title}
             description={description}
             authorID={authorID}
+            authorName={authorName}
           />
         ))
       ) : (
@@ -46,4 +49,4 @@ function Data({ category }) {
   );
 }
 
-export default Data;
+export default Posts;
